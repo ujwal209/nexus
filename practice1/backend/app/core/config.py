@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     API_V1_STR: str = "/api/v1"
     
     # MONGODB SETTINGS
-    MONGODB_URI: str = "mongodb+srv://ujwal:ujwaluj1@cluster0.p4qtaj2.mongodb.net/"
+    MONGODB_URI: str = ""
     DATABASE_NAME: str = "nexus"
 
     # API KEYS
