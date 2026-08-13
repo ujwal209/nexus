@@ -71,6 +71,8 @@ import { OutputModal } from "@/components/canvas/OutputModal";
 import { CanvasNode, Connection, PaletteNodeDef } from "@/components/canvas/types";
 import { LLM_PROVIDERS, PALETTE_CATALOG, CATEGORY_TABS } from "@/components/canvas/constants";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/v1";
+
 export default function EmbeddedWorkflowPage() {
   const router = useRouter();
   const params = useParams();
@@ -207,7 +209,7 @@ export default function EmbeddedWorkflowPage() {
       setToken(savedToken);
 
       try {
-        const authRes = await fetch("http://localhost:8000/api/v1/auth/me", {
+        const authRes = await fetch(`${API_BASE_URL}/auth/me`, {
           headers: { "Authorization": `Bearer ${savedToken}` }
         });
         if (!authRes.ok) throw new Error("Unauthorized");
@@ -222,7 +224,7 @@ export default function EmbeddedWorkflowPage() {
         }
 
         // Fetch workflow details from DB
-        const wfRes = await fetch(`http://localhost:8000/api/v1/workflows/${graphId}`, {
+        const wfRes = await fetch(`${API_BASE_URL}/workflows/${graphId}`, {
           headers: { "Authorization": `Bearer ${savedToken}` }
         });
         if (wfRes.ok) {
@@ -797,7 +799,7 @@ export default function EmbeddedWorkflowPage() {
     }));
 
     try {
-      const res = await fetch("http://localhost:8000/api/v1/workflows/generate-html", {
+      const res = await fetch(`${API_BASE_URL}/workflows/generate-html`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -855,7 +857,7 @@ export default function EmbeddedWorkflowPage() {
     );
 
     try {
-      const res = await fetch("http://localhost:8000/api/v1/workflows/generate-html", {
+      const res = await fetch(`${API_BASE_URL}/workflows/generate-html`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

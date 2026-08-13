@@ -55,6 +55,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { saveWorkflowToBackend, connectExecutionWebSocket } from "@/lib/api";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/v1";
+
 // ROBUST BRAND LOGO WITH FAILSAFE FALLBACK
 function BrandLogo({ url, name }: { url: string; name: string }) {
   const [hasError, setHasError] = useState(false);
@@ -316,7 +318,7 @@ export default function PlaygroundPage() {
 
     const checkAuthStatus = async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/v1/auth/me", {
+        const res = await fetch(`${API_BASE_URL}/auth/me`, {
           headers: { "Authorization": `Bearer ${token}` }
         });
 
