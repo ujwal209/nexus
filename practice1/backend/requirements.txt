@@ -148,3 +148,5 @@ watchfiles==1.2.0
     # via uvicorn
 websockets==17.0.1
     # via uvicorn
+pyjwt==2.8.0
+bcrypt==4.1.2
